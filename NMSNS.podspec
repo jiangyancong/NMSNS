@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NMSNS"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.summary      = "NMSNS"
 
   # This description is used to generate tags and improve search results.
@@ -114,12 +114,8 @@ Pod::Spec.new do |s|
   #  the lib prefix of their name.
   #
 
-  # s.framework  = "SomeFramework"
-  #s.frameworks = "MapKit", "AssetsLibrary", "QuartzCore", "ImageIO", "MessageUI"
-
-  # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
-  # s.libraries = "z"
+  s.framework = "Security","SystemConfiguration","CoreGraphics","CoreTelephony"
+  s.libraries = "iconv","sqlite3","stdc++","z","c++"
 
   #s.prefix_header_file = 'SupportingFile/Test-Prefix.pch'
 
@@ -135,12 +131,6 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
 
-  # s.subspec 'Analysis' do |u|
-  #   u.source_files = "3PP/Analysis/**/*.{h,m}"
-  #   u.vendored_libraries = '3PP/Analysis/**/*.a'
-  #   u.libraries = 'z'
-  # end
-
   #s.subspec 'AliPay' do |ali|
   #   ali.source_files = "NMPublic/NMPublic/3PP/Pay/AlixPay/**/*.{h,m}"
   #   ali.resource = 'NMPublic/NMPublic/3PP/Pay/AlixPay/2014_12_08/AlipaySDK.bundle'
@@ -149,28 +139,18 @@ Pod::Spec.new do |s|
   # end
 
   s.subspec 'Tencent' do |t|
-    t.source_files = "TencentOpenAPI2.9.5//**/*.{h,m}"
-    t.dependency "NMTest/Util"
+    t.vendored_frameworks = "TencentOpenAPI3.1.0/TencentOpenAPI.framework"
+    t.resources = "TencentOpenAPI3.1.0/TencentOpenApi_IOS_Bundle.bundle"
+  end
+  
+  s.subspec 'Wechat' do |w|
+    w.source_files = "WeChatSDK1.7.1/*.h"
+    w.vendored_libraries = "WeChatSDK1.7.1/libWeChatSDK.a"
   end
 
-  s.subspec 'Util' do |util|
-    util.source_files = "Util/**/*.{c,h,m}"
+  s.subspec 'Weibo' do |wb|
+    wb.dependency 'WeiboSDK', '~> 3.1.3'
   end
-
-  s.subspec 'View' do |view|
-    view.source_files = "View/**/*.{h,m}"
-    view.dependency "NMTest/Util"
-  end
-
-  s.subspec 'SNS' do |sn|
-    sn.source_files = "SNS/**/*.{h,m}"
-    sn.vendored_frameworks = "SNS/TencentOpenAPI2.9.5/TencentOpenAPI.framework"
-    sn.resources = "SNS/TencentOpenAPI2.9.5/TencentOpenApi_IOS_Bundle.bundle"
-    sn.framework = "Security","SystemConfiguration","CoreGraphics","CoreTelephony"
-    sn.libraries = "iconv","sqlite3","stdc++","z","c++"
-  end
-
-  s.default_subspecs ='Util','View','Network'
 end
 
 
