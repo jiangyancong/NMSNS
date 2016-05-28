@@ -131,12 +131,12 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
 
-  #s.subspec 'AliPay' do |ali|
-  #   ali.source_files = "NMPublic/NMPublic/3PP/Pay/AlixPay/**/*.{h,m}"
-  #   ali.resource = 'NMPublic/NMPublic/3PP/Pay/AlixPay/2014_12_08/AlipaySDK.bundle'
-  #   ali.libraries = "crypto","ssl"
-  #   ali.vendored_frameworks = "NMPublic/NMPublic/3PP/Pay/AlixPay/2014_12_08/AliPaySDK.framework"
-  # end
+  s.subspec 'AliPay' do |ali|
+     ali.source_files = "AlixPay/2016_04_28/**/*.{h,m}"
+     ali.resource = 'AlixPay/2016_04_28/AlipaySDK.bundle'
+     ali.libraries = "crypto","ssl"
+     ali.vendored_frameworks = "AlixPay/2016_04_28/AliPaySDK.framework"
+  end
 
   s.subspec 'Tencent' do |t|
     t.vendored_frameworks = "TencentOpenAPI3.1.0/TencentOpenAPI.framework"
@@ -151,6 +151,10 @@ Pod::Spec.new do |s|
   s.subspec 'Weibo' do |wb|
     wb.dependency 'WeiboSDK', '~> 3.1.3'
   end
+    s.subspec 'UPPay' do |wb|
+    wb.dependency 'WeiboSDK', '~> 3.1.3'
+  end
+
 end
 
 
